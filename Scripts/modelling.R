@@ -1,6 +1,17 @@
+# Libraries ####
+library(FNN)
+
 # True outlier detection ####
-find_crude_local_residuals <- function(data_set){
+find_crude_local_residuals <- function(data_set, method="knn", ...){
     # Fit a simple local model to the data
+    
+    if (method=="knn"){
+        # Use k-nearest neighbours regression
+        knn
+        
+    } else{
+        return (NULL)
+    }
     
     # Compute approximate residuals for each data point
     
