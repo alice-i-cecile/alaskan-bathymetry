@@ -7,25 +7,33 @@ find_crude_local_residuals <- function(data_set, method="knn", ...){
     
     if (method=="knn"){
         # Use k-nearest neighbours regression
-        knn
+        crude_model <- knn.reg(data_set[c("x", "y")], y=data_set$z, ...)
+        
+        resids <- crude_model$residuals
         
     } else{
         return (NULL)
     }
     
-    # Compute approximate residuals for each data point
+    # Return approximate residuals for each data point
     
-    return(NULL)
+    return(resids)
 } 
 
 
-detect_outliers <- function(resids, threshold=3){
+detect_outliers <- function(resids, threshold=4){
     
     # Standardize the residuals
+    std_resids <- resids / sd(resids)
     
     # Flag all points with an absolute standardized residual > threshold
+    outlier_flags <- abs(std_resids) > threshold
     
-    return(NULL)
+    outlier_proportion <- sum(outlier_flags) / length(outlier_flags)
+    
+    print(paste(outlier_proportion*100, "% of points were flagged as outliers."))
+    
+    return(outlier_flags)
 }
 
 # Weighting remaining points ####
