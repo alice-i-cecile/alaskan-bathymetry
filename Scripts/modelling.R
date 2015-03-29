@@ -31,7 +31,7 @@ detect_outliers <- function(resids, threshold=4){
     
     outlier_proportion <- sum(outlier_flags) / length(outlier_flags)
     
-    print(paste(outlier_proportion*100, "% of points were flagged as outliers."))
+    print(paste(signif(outlier_proportion*100,3), "% of points were flagged as outliers."))
     
     return(outlier_flags)
 }
